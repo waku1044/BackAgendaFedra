@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "back": "nodemon index.js"
+    "back": "node index.js"
   },
   "author": "walter Gimenez",
   "license": "ISC",
