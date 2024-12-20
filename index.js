@@ -5,8 +5,11 @@ const mongoose = require("mongoose");  // Importas mongoose
 const routes = require("./controlers/rutas.js");  // Importas las rutas
 require('dotenv').config();  // Importas dotenv
 
+
+const port = process.env.HOST || process.env.PORT;
+
 // Conexión a la base de datos
-mongoose.connect(process.env.HOST)
+mongoose.connect(process.env.port)
   .then(() => console.log("Conectado a la base de datos"))
   .catch((err) => console.error("Error al conectar a la base de datos", err));
 
