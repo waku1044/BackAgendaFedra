@@ -10,7 +10,7 @@ mongoose.connect(process.env.HOST)
   .then(() => console.log("Conectado a la base de datos"))
   .catch((err) => console.error("Error al conectar a la base de datos", err));
 
-const puerto =  process.env.PORT;
+const puerto =  process.env.PORT || 5000;
 
 const archivodb = mongoose.connection;
 // Configuraciones
