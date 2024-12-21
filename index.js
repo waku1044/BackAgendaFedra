@@ -9,9 +9,18 @@ require('dotenv').config();  // Importas dotenv
 const port = process.env.HOST ;
 
 // Conexión a la base de datos
-mongoose.connect(port)
-  .then(() => console.log("Conectado a la base de datos"))
-  .catch((err) => console.error("Error al conectar a la base de datos", err));
+const connectDb = async () => {
+    try {
+      await mongoose.connect(process.env.HOST, { useNewUrlParser: true, useUnifiedTopology: true });
+      console.log("Conectado a la base de datos");
+    } catch (err) {
+      console.error("Error al conectar a la base de datos", err);
+      process.exit(1);  // Finaliza el proceso si la conexión falla
+    }
+  };
+  
+  connectDb();
+  
 
 const puerto =   5000;
 
