@@ -11,7 +11,7 @@ const port = process.env.HOST ;
 // Conexión a la base de datos
 const connectDb = async () => {
     try {
-      await mongoose.connect(process.env.HOST, { useNewUrlParser: true, useUnifiedTopology: true });
+      await mongoose.connect(process.env.HOST);
       console.log("Conectado a la base de datos");
     } catch (err) {
       console.error("Error al conectar a la base de datos", err);
