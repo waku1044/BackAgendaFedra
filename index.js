@@ -9,7 +9,7 @@ require('dotenv').config();  // Importas dotenv
 const port = process.env.HOST ;
 
 // Conexión a la base de datos
-mongoose.connect(process.env.port)
+mongoose.connect(port)
   .then(() => console.log("Conectado a la base de datos"))
   .catch((err) => console.error("Error al conectar a la base de datos", err));
 
