@@ -6,7 +6,7 @@ const routes = require("./controlers/rutas.js");  // Importas las rutas
 require('dotenv').config();  // Importas dotenv
 
 
-const port = process.env.HOST || process.env.PORT;
+const port = process.env.HOST ;
 
 // Conexión a la base de datos
 mongoose.connect(process.env.port)
@@ -15,7 +15,7 @@ mongoose.connect(process.env.port)
 
 const puerto =   5000;
 
-const archivodb = mongoose.connection(port);
+const archivodb = mongoose.connection;
 // Configuraciones
 server.use(cors());  // Habilitas cors
 server.use(express.json());  // Habilitas express.json
