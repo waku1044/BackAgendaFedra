@@ -15,7 +15,7 @@ mongoose.connect(process.env.port)
 
 const puerto =   5000;
 
-const archivodb = mongoose.connection;
+const archivodb = mongoose.connection(port);
 // Configuraciones
 server.use(cors());  // Habilitas cors
 server.use(express.json());  // Habilitas express.json
