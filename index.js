@@ -1,48 +1,30 @@
-const express = require("express");  // Importas express
-const server = express();  // Inicializas express
-const cors = require("cors");  // Importas cors
-const mongoose = require("mongoose");  // Importas mongoose
-const routes = require("./controlers/rutas.js");  // Importas las rutas
-require('dotenv').config();  // Importas dotenv
+const express = require("express");
+const server = express();
+const cors = require("cors");
+const mongoose = require("mongoose");
+const routes = require("./controlers/rutas.js"); // Rutas de la API
+require('dotenv').config(); // Cargar variables de entorno
 
+const port = process.env.PORT || 5000; // El puerto puede ser proporcionado por la variable de entorno o 5000
 
-const port = process.env.HOST ;
-
-// Conexión a la base de datos
+// Conexión a la base de datos
 const connectDb = async () => {
     try {
-      await mongoose.connect(process.env.HOST);
-      console.log("Conectado a la base de datos");
+        await mongoose.connect(process.env.MONGO_URI);  // Usa la URI desde el .env
+        console.log("Conectado a la base de datos");
     } catch (err) {
-      console.error("Error al conectar a la base de datos", err);
-      process.exit(1);  // Finaliza el proceso si la conexión falla
+        console.error("Error al conectar a la base de datos", err);
+        process.exit(1);  // Finaliza el proceso si la conexión falla
     }
-  };
-  
-  connectDb();
-  
+};
 
-const puerto =   5000;
+connectDb();
 
-const archivodb = mongoose.connection;
-// Configuraciones
-server.use(cors());  // Habilitas cors
-server.use(express.json());  // Habilitas express.json
+server.use(cors());  // Habilitar CORS
+server.use(express.json());  // Habilitar el parseo de JSON
 
+server.use("/api", routes);  // Rutas de la API
 
-// Rutas
-server.use("/api", routes);  // Haces que el servidor escuche en el puerto 3000
-
-archivodb.once("open", () => {
-    console.log("Conectado a la base de datos");
-});
-
-archivodb.on("error", (error) => {
-    console.log("Error al conectar a la base de datos: " + error);
-});
-
-
-// Haces que el servidor escuche en el puerto 3000
-server.listen(puerto, () => {
-    console.log("Servidor corriendo en el puerto: "+ puerto);
+server.listen(port, () => {
+    console.log(`Servidor corriendo en el puerto: ${port}`);
 });
