@@ -7,6 +7,11 @@ require('dotenv').config(); // Cargar variables de entorno
 
 const port = process.env.PORT || 5000; // El puerto puede ser proporcionado por la variable de entorno o 5000
 
+server.use(cors());  // Habilitar CORS
+server.use(express.json());  // Habilitar el parseo de JSON
+
+server.use("/api", routes);  // Rutas de la API
+
 // Conexión a la base de datos
 const connectDb = async () => {
     try {
@@ -20,10 +25,6 @@ const connectDb = async () => {
 
 connectDb();
 
-server.use(cors());  // Habilitar CORS
-server.use(express.json());  // Habilitar el parseo de JSON
-
-server.use("/api", routes);  // Rutas de la API
 
 server.listen(port, () => {
     console.log(`Servidor corriendo en el puerto: ${port}`);
