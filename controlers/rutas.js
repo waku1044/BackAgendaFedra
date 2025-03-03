@@ -39,7 +39,7 @@ routes.post("/agregarcontacto", async (req, res) => {
 // Ruta para editar un contacto
 routes.put("/editarcontacto/:id", async (req, res) => {
     const id = req.params.id;
-    const { nombre, telefono, descripcion, fecha, hora } = req.body;
+    const { nombre, telefono, descripcion, fecha, hora, seña } = req.body;
 
     try {
         const contacto = await admin.clientes.findOneAndUpdate({ _id: id }, {
@@ -47,7 +47,8 @@ routes.put("/editarcontacto/:id", async (req, res) => {
             telefono,
             descripcion,
             fecha,
-            hora
+            hora, 
+            seña
         });
 
         if (!contacto) {
